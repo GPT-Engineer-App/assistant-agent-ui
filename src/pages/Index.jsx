@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, VStack, HStack, Input, Button, Text, Box, Heading, Divider, useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import { FaPlay, FaSync } from "react-icons/fa";
 
 const Index = () => {
@@ -8,6 +9,7 @@ const Index = () => {
   const [agentRuns, setAgentRuns] = useState([]);
   const [currentRunId, setCurrentRunId] = useState(null);
   const toast = useToast();
+  const navigate = useNavigate();
 
   const handleRunAgent = () => {
     // Simulate contract interaction
@@ -25,6 +27,7 @@ const Index = () => {
     };
     setAgentRuns([...agentRuns, newRun]);
     setCurrentRunId(newRunId);
+    navigate(`/run/${newRunId}`);
     toast({
       title: "Agent Run Created",
       description: `Run ID: ${newRunId}`,
